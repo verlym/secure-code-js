@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="13" failures="0" errors="0" time="0.925">
+  <testsuite name="TaskRepository" errors="0" failures="0" skipped="0" timestamp="2025-05-19T14:56:50" time="0.853" tests="13">
+    <testcase classname="TaskRepository generateId should generate a unique ID" name="TaskRepository generateId should generate a unique ID" time="0.003">
+    </testcase>
+    <testcase classname="TaskRepository getAllTasks should return an empty array when no tasks exist" name="TaskRepository getAllTasks should return an empty array when no tasks exist" time="0.001">
+    </testcase>
+    <testcase classname="TaskRepository getAllTasks should return all tasks" name="TaskRepository getAllTasks should return all tasks" time="0.001">
+    </testcase>
+    <testcase classname="TaskRepository getTaskById should return null for non-existing task" name="TaskRepository getTaskById should return null for non-existing task" time="0.001">
+    </testcase>
+    <testcase classname="TaskRepository getTaskById should return a task by ID" name="TaskRepository getTaskById should return a task by ID" time="0.001">
+    </testcase>
+    <testcase classname="TaskRepository createTask should create a task with title and description" name="TaskRepository createTask should create a task with title and description" time="0.002">
+    </testcase>
+    <testcase classname="TaskRepository createTask should throw an error for empty title" name="TaskRepository createTask should throw an error for empty title" time="0.017">
+    </testcase>
+    <testcase classname="TaskRepository createTask should handle optional description" name="TaskRepository createTask should handle optional description" time="0.001">
+    </testcase>
+    <testcase classname="TaskRepository updateTask should update a task" name="TaskRepository updateTask should update a task" time="0.001">
+    </testcase>
+    <testcase classname="TaskRepository updateTask should return null for non-existing task" name="TaskRepository updateTask should return null for non-existing task" time="0.001">
+    </testcase>
+    <testcase classname="TaskRepository updateTask should throw an error for invalid inputs" name="TaskRepository updateTask should throw an error for invalid inputs" time="0.002">
+    </testcase>
+    <testcase classname="TaskRepository deleteTask should delete a task" name="TaskRepository deleteTask should delete a task" time="0.001">
+    </testcase>
+    <testcase classname="TaskRepository deleteTask should return false if task does not exist" name="TaskRepository deleteTask should return false if task does not exist" time="0.001">
+    </testcase>
+  </testsuite>
+</testsuites>
