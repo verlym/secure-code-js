@@ -1,9 +1,7 @@
+// jest.config.js
 module.exports = {
   // ... other Jest configurations
-  coverageDirectory: 'coverage',
-  coverageReporters: ['lcov', 'text-summary'],
-  reporters: [
-    'default',
-    ['jest-junit', { outputDirectory: 'reports/junit' }],
-  ],
+  collectCoverage: true,
+  coverageDirectory: 'coverage', // Default coverage directory
+  coverageReporters: ['lcov', 'text-summary'], // lcov is important for SonarCloud
 };
