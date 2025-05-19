@@ -1,5 +1,5 @@
 // repository/taskRepository.js
-const Task = require('../model/task');
+const Task = require("../model/task");
 let tasks = []; // In-memory "database"
 
 class TaskRepository {
@@ -12,49 +12,61 @@ class TaskRepository {
   }
 
   async getTaskById(id) {
-    return tasks.find(task => task.id === id);
+    return tasks.find((task) => task.id === id) || null;
   }
 
   async createTask(title, description) {
     // ✅ Secure Coding: Input Validation (basic)
-    if (!title || typeof title !== 'string' || title.trim() === '') {
-      throw new Error('Title is required and must be a non-empty string.');
+    if (!title || typeof title !== "string" || title.trim() === "") {
+      throw new Error("Title is required and must be a non-empty string.");
     }
-    if (description && typeof description !== 'string') {
-      throw new Error('Description must be a string.');
+    if (description && typeof description !== "string") {
+      throw new Error("Description must be a string.");
     }
 
-    const newTask = new Task(this.generateId(), title.trim(), description ? description.trim() : '');
+    const newTask = new Task(
+      this.generateId(),
+      title.trim(),
+      description ? description.trim() : ""
+    );
     tasks.push(newTask);
     return newTask;
   }
 
   async updateTask(id, title, description, completed) {
-    const taskIndex = tasks.findIndex(task => task.id === id);
+    const taskIndex = tasks.findIndex((task) => task.id === id);
     if (taskIndex === -1) {
       return null;
     }
 
     // ✅ Secure Coding: Input Validation (basic)
-    if (title !== undefined && (typeof title !== 'string' || title.trim() === '')) {
-      throw new Error('Title must be a non-empty string.');
+    if (
+      title !== undefined &&
+      (typeof title !== "string" || title.trim() === "")
+    ) {
+      throw new Error("Title must be a non-empty string.");
     }
-    if (description !== undefined && typeof description !== 'string') {
-      throw new Error('Description must be a string.');
+    if (description !== undefined && typeof description !== "string") {
+      throw new Error("Description must be a string.");
     }
-    if (completed !== undefined && typeof completed !== 'boolean') {
-      throw new Error('Completed must be a boolean.');
+    if (completed !== undefined && typeof completed !== "boolean") {
+      throw new Error("Completed must be a boolean.");
     }
 
-    tasks[taskIndex].title = title !== undefined ? title.trim() : tasks[taskIndex].title;
-    tasks[taskIndex].description = description !== undefined ? description.trim() : tasks[taskIndex].description;
-    tasks[taskIndex].completed = completed !== undefined ? completed : tasks[taskIndex].completed;
+    tasks[taskIndex].title =
+      title !== undefined ? title.trim() : tasks[taskIndex].title;
+    tasks[taskIndex].description =
+      description !== undefined
+        ? description.trim()
+        : tasks[taskIndex].description;
+    tasks[taskIndex].completed =
+      completed !== undefined ? completed : tasks[taskIndex].completed;
     return tasks[taskIndex];
   }
 
   async deleteTask(id) {
     const initialLength = tasks.length;
-    tasks = tasks.filter(task => task.id !== id);
+    tasks = tasks.filter((task) => task.id !== id);
     return tasks.length < initialLength;
   }
 }
