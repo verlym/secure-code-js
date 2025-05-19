@@ -34,7 +34,8 @@ jobs:
         with:
           args: >-
             -Dsonar.projectKey=verlym_secure-code-js
-            -Dsonar.projectName=verlym
+            -Dsonar.projectName=secure-code-js
+            -Dsonar.organization=verlym
             -Dsonar.projectVersion=1.0
             -Dsonar.sources=.
             -Dsonar.tests=.
