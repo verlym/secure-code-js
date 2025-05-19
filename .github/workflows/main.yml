@@ -2,9 +2,9 @@ name: SonarCloud Analysis
 
 on:
   push:
-    branches: [ main ]
+    branches: [main] # Or your main branch name
   pull_request:
-    branches: [ main ]
+    branches: [main] # Or your main branch name
 
 jobs:
   sonarcloud:
@@ -13,41 +13,27 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # Shallow clone is not enough for SonarCloud
+          fetch-depth: 0 # Shallow clones are not enough for SonarCloud
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 'lts/*'
+          node-version: 18 # Or your preferred Node.js version
 
       - name: Install dependencies
         run: npm install
 
-      - name: Run tests and generate coverage report
-        run: |
-          npm test -- --coverageReporters=lcovonly --reporters=default --reporters=jest-junit
+      - name: Run tests with coverage
+        run: npm test
 
       - name: SonarCloud Scan
-        uses: sonarsource/sonarcloud-github-action@master
+        uses: sonarsource/sonarcloud-github-action@v2.1
         env:
-          SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }} # Use GitHub Secrets for your token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Used to decorate PRs
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >-
             -Dsonar.projectKey=verlym_secure-code-js
-            -Dsonar.projectName=secure-code-js
             -Dsonar.organization=verlym
-            -Dsonar.projectVersion=1.0
-            -Dsonar.sources=.
-            -Dsonar.tests=.
-            -Dsonar.test.inclusions=**/*.test.js
-            -Dsonar.javascript.testRunner=jest
-            -Dsonar.javascript.lcov.reportPath=coverage/lcov.info
-            -Dsonar.javascript.coveragePlugin=istanbul
-            -Dsonar.javascript.exclusions=**/node_modules/**,**/dist/**
-            -Dsonar.junit.reportPaths=junit.xml
-
-      - name: Trigger SonarCloud Quality Gate
-        uses: sonarsource/sonarcloud-github-action@master
-        timeout-minutes: 5
-        with:
-          args: -Dsonar.qualitygate.wait=true
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+            -Dsonar.sourceEncoding=UTF-8
