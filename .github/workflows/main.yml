@@ -25,7 +25,7 @@ jobs:
 
       - name: Run tests and generate coverage report
         run: |
-          npm test -- --coverage --coverageReporters=lcovonly --reporters=default --reporters=jest-junit
+          npm test -- --coverageReporters=lcovonly --reporters=default --reporters=jest-junit
 
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
