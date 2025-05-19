@@ -37,7 +37,7 @@
 
 ✅ **Logging:**
 
-* `morgan` is used for basic HTTP request logging, which is crucial for monitoring, debugging, and security analysis.
+* `morgan` is used for basic HTTP request logging, which is crucial for monitoring, debugging, and security analysis..
 * **Note:** For production applications, consider using more advanced logging libraries like Winston or Pino that offer features like log levels, different output streams, and structured logging.
 
 ✅ **Least Privilege:**
