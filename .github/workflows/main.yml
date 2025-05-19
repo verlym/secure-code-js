@@ -44,7 +44,7 @@ jobs:
             -Dsonar.javascript.lcov.reportPath=coverage/lcov.info
             -Dsonar.javascript.coveragePlugin=istanbul
             -Dsonar.javascript.exclusions=**/node_modules/**,**/dist/**
-            -Dsonar.junit.reportPaths=reports/junit/junit.xml
+            -Dsonar.junit.reportPaths=junit.xml
 
       - name: Trigger SonarCloud Quality Gate
         uses: sonarsource/sonarcloud-github-action@master
